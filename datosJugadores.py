@@ -35,57 +35,31 @@ def modificarJugador(jugador,finJuego): #jugador va a ser el jugador entero (el 
     jugador['Victorias%'] = porcentajeVictorias(jugador['Victorias'],jugador['PartidasJugadas'])
     
     return jugador
-    print("HOLA")
 
 def printJugador(myJugador):
     for key in myJugador:
-        print(key +  " : " + str(myJugador[key]))
+        print(key +  " : " + str(myJugador[key]))   
+    print("---------")
+
+#devuelve el diccionario con el jugador
+def extraerJugador(myListaJugadores, nombreJugador):
+    jugadorDetectado = False
+    for element in myListaJugadores:
+        indice = myListaJugadores.index(element)
+        if nombreJugador == element.get('Nombre'):
+            jugadorDetectado = True
+            break
+
+    juer = myListaJugadores.pop(indice)
+    return juer
 
 
-"""
-tendre un diccionario con los datos del jugador
-
-y si ha ganado o perdido
-
-"""
-
-prueba = crearJugador("Juan")
-
-printJugador(prueba)
-print("------------------------------")
-prueba = modificarJugador(prueba,"V")
-prueba = modificarJugador(prueba,"D")
-prueba = modificarJugador(prueba,"D")
-prueba = modificarJugador(prueba,"D")
-prueba = modificarJugador(prueba,"D")
-prueba = modificarJugador(prueba,"E")
-prueba = modificarJugador(prueba,"E")
-prueba = modificarJugador(prueba,"V")
-prueba = modificarJugador(prueba,"V")
-
-prueba2 = crearJugador("Maria")
-printJugador(prueba2)
-prueba2 = modificarJugador(prueba2,"V")
-prueba2 = modificarJugador(prueba2,"V")
-prueba2 = modificarJugador(prueba2,"V")
-prueba2 = modificarJugador(prueba2,"V")
-prueba2 = modificarJugador(prueba2,"E")
-prueba2 = modificarJugador(prueba2,"E")
-prueba2 = modificarJugador(prueba2,"E")
-prueba2 = modificarJugador(prueba2,"V")
-prueba2 = modificarJugador(prueba2,"V")
-
-
-
-
-
-
-printJugador(prueba)
-print("-------------")
-printJugador(prueba2)
-
-myListJugadores = []
-myListJugadores.append(prueba)
-myListJugadores.append(prueba2)
-
-archivoJson.escrituraJSON(myListJugadores)
+#devuelve True or false
+def esJugador(myListaJugadores, nombreJugador):
+    jugadorDetectado = False
+    for element in myListaJugadores:
+        if nombreJugador == element.get('Nombre'):
+            jugadorDetectado = True
+            break
+    return jugadorDetectado
+    
